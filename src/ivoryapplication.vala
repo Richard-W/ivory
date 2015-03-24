@@ -20,9 +20,4 @@ public class Ivory.Application : Gtk.Application {
 		var main_window = new MainWindow(this);
 		main_window.show_all();
 	}
-
-	public static int main(string[] args) {
-		var app = Ivory.Application.instance;
-		return app.run(args);
-	}
 }

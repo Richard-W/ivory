@@ -180,7 +180,7 @@ endfunction ()
 function (vala_add_library name type)
 	cmake_parse_arguments (
 		ARGS
-		"GENERATE_VAPI;GENERATE_INTERNAL_VAPI"
+		"GENERATE_VAPI;GENERATE_INTERNAL_VAPI;NO_LINKING"
 		"VAPI_PATH_VARIABLE;HEADER_PATH_VARIABLE;INTERNAL_VAPI_PATH_VARIABLE;INTERNAL_HEADER_PATH_VARIABLE;LIBRARY_NAME"
 		"PACKAGES;OPTIONS;CUSTOM_VAPIS;C_SOURCES"
 		${ARGN}
@@ -236,8 +236,10 @@ function (vala_add_library name type)
 	endforeach ()
 
 	add_library (${name} ${type} ${c_sources} ${ARGS_C_SOURCES})
-	target_link_libraries (${name}
-		${VALA_LIBRARIES}
-		${local_libraries}
-	)
+	if(NOT ARGS_NO_LINKING)
+		target_link_libraries (${name}
+			${VALA_LIBRARIES}
+			${local_libraries}
+		)
+	endif()
 endfunction ()
