@@ -159,13 +159,13 @@ function (vala_add_executable name)
 	unset (local_libraries)
 	foreach (package ${ARGS_PACKAGES})
 		pkg_check_modules (
-			PACKAGE
+			PACKAGE_${package}
 			${package}
 			REQUIRED
 		)
-		include_directories (${PACKAGE_INCLUDE_DIRS})
-		link_directories (${PACKAGE_LIBRARY_DIRS})
-		foreach (local_library ${PACKAGE_LIBRARIES})
+		include_directories (${PACKAGE_${package}_INCLUDE_DIRS})
+		link_directories (${PACKAGE_${package}_LIBRARY_DIRS})
+		foreach (local_library ${PACKAGE_${package}_LIBRARIES})
 			list (APPEND local_libraries ${local_library})
 		endforeach ()
 	endforeach ()
@@ -224,13 +224,13 @@ function (vala_add_library name type)
 	unset (local_libraries)
 	foreach (package ${ARGS_PACKAGES})
 		pkg_check_modules (
-			PACKAGE
+			PACKAGE_${package}
 			${package}
 			REQUIRED
 		)
-		include_directories (${PACKAGE_INCLUDE_DIRS})
-		link_directories (${PACKAGE_LIBRARY_DIRS})
-		foreach (local_library ${PACKAGE_LIBRARIES})
+		include_directories (${PACKAGE_${package}_INCLUDE_DIRS})
+		link_directories (${PACKAGE_${package}_LIBRARY_DIRS})
+		foreach (local_library ${PACKAGE_${package}_LIBRARIES})
 			list (APPEND local_libraries ${local_library})
 		endforeach ()
 	endforeach ()

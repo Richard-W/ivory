@@ -5,5 +5,8 @@ class Ivory.MainWindow : ApplicationWindow {
 
 	public MainWindow(Application app) {
 		Object(application: app);
+		var webview = new WebKit.WebView();
+		this.add(webview);
+		webview.load_uri("https://www.google.de");
 	}
 }

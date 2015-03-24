@@ -14,5 +14,11 @@ set(IVORY_RESDIR ${IVORY_SRCDIR}/resources)
 set(IVORY_BINDIR ${CMAKE_CURRENT_BINARY_DIR})
 set(IVORY_BINRESDIR ${IVORY_BINDIR}/resources)
 
+set(ivory_vala_packages
+	gtk+-3.0
+	webkit2gtk-4.0
+)
+
 add_subdirectory(resources)
+add_subdirectory(vapi)
 add_subdirectory(src)
