@@ -20,5 +20,4 @@ set(ivory_vala_packages
 )
 
 add_subdirectory(resources)
-add_subdirectory(vapi)
 add_subdirectory(src)

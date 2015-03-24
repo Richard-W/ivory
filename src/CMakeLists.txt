@@ -6,13 +6,11 @@ vala_add_library(ivory_static STATIC
 	PACKAGES ${ivory_vala_packages}
 	OPTIONS
 		--gresources=${IVORY_RESDIR}/resources.xml
-		--vapidir=${IVORY_SRCDIR}/vapi
 	GENERATE_VAPI
 	LIBRARY_NAME ivory_static
 	VAPI_PATH_VARIABLE ivory_static_vapi
 	NO_LINKING
 )
-add_dependencies(ivory_static vapis)
 
 # Compile the actual executable and link it with the previously compiled static library.
 vala_add_executable(ivory
@@ -22,5 +20,5 @@ vala_add_executable(ivory
 	C_SOURCES ${IVORY_BINRESDIR}/resources.c
 )
 set_source_files_properties(${IVORY_BINRESDIR}/resources.c PROPERTIES GENERATED 1)
-add_dependencies(ivory resources vapis)
+add_dependencies(ivory resources)
 target_link_libraries(ivory ivory_static)
