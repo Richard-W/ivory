@@ -1,8 +1,14 @@
 using Gtk;
 
+/**
+ * Singleton object managing the application.
+ */
 public class Ivory.Application : Gtk.Application {
 
 	private static Ivory.Application? _instance = null;
+	/**
+	 * Only instance of this singleton object.
+	 */
 	public static Ivory.Application instance {
 		get {
 			if(_instance == null) {
@@ -12,7 +18,7 @@ public class Ivory.Application : Gtk.Application {
 		}
 	}
 
-	public Application() {
+	private Application() {
 		Object(application_id: "xyz.wiedenhoeft.ivory", flags: ApplicationFlags.FLAGS_NONE);
 	}
 

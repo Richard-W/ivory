@@ -1,5 +1,8 @@
 using Gtk;
 
+/**
+ * Main browser window.
+ */
 [GtkTemplate(ui="/xyz/wiedenhoeft/ivory/ui/main_window.ui")]
 public class Ivory.MainWindow : ApplicationWindow {
 
