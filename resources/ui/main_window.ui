@@ -9,7 +9,28 @@
     <property name="default_height">600</property>
     <property name="show_menubar">False</property>
     <child>
-      <placeholder/>
+      <object class="GtkNotebook" id="notebook">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <child>
+          <placeholder/>
+        </child>
+        <child type="tab">
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child type="tab">
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child type="tab">
+          <placeholder/>
+        </child>
+      </object>
     </child>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
@@ -21,6 +42,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_back_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage" id="image1">
                 <property name="visible">True</property>
@@ -35,6 +58,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_forward_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage" id="image2">
                 <property name="visible">True</property>
@@ -52,6 +77,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_refresh_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage" id="image3">
                 <property name="visible">True</property>
@@ -69,6 +96,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="width_chars">30</property>
+            <signal name="activate" handler="on_uri_entry_activate" swapped="no"/>
           </object>
         </child>
         <child>
@@ -76,6 +104,8 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <signal name="clicked" handler="on_newtab_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage" id="image4">
                 <property name="visible">True</property>

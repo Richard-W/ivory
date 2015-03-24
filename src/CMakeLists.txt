@@ -3,6 +3,7 @@
 vala_add_library(ivory_static STATIC
 		ivoryapplication.vala
 		ivorymainwindow.vala
+		ivorytab.vala
 	PACKAGES ${ivory_vala_packages}
 	OPTIONS
 		--gresources=${IVORY_RESDIR}/resources.xml

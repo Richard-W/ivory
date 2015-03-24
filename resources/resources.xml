@@ -2,5 +2,6 @@
 <gresources>
 	<gresource prefix="/xyz/wiedenhoeft/ivory">
 		<file compressed="true" preprocess="xml-stripblanks">ui/main_window.ui</file>
+		<file compressed="true" preprocess="xml-stripblanks">ui/tab.ui</file>
 	</gresource>
 </gresources>

@@ -8,7 +8,9 @@ add_custom_command(
 		--target=${IVORY_BINRESDIR}/resources.c
 		--generate-source
 	MAIN_DEPENDENCY resources.xml
-	DEPENDS ${IVORY_RESDIR}/ui/main_window.ui
+	DEPENDS
+		${IVORY_RESDIR}/ui/main_window.ui
+		${IVORY_RESDIR}/ui/tab.ui
 )
 
 add_custom_target(resources DEPENDS resources.c)
