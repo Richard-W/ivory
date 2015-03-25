@@ -39,21 +39,21 @@ public class Ivory.MainWindow : ApplicationWindow {
 	[GtkCallback]
 	public void on_back_button_clicked(Button button) {
 		if(active_tab != null) {
-			active_tab.webview.go_back();
+			active_tab.go_back();
 		}
 	}
 
 	[GtkCallback]
 	public void on_forward_button_clicked(Button button) {
 		if(active_tab != null) {
-			active_tab.webview.go_forward();
+			active_tab.go_forward();
 		}
 	}
 
 	[GtkCallback]
 	public void on_refresh_button_clicked(Button button) {
 		if(active_tab != null) {
-			active_tab.webview.reload();
+			active_tab.reload();
 		}
 	}
 
@@ -62,15 +62,12 @@ public class Ivory.MainWindow : ApplicationWindow {
 		add_tab();
 	}
 
-	private void add_tab() {
+	private Tab add_tab(string uri = "") {
 		var tab = new Tab(notebook);
-		var page_num = notebook.append_page(tab, tab.label);
-		tab.show();
-		tab.label.show();
-		notebook.set_current_page(page_num);
-		uri_entry.text = "";
+		notebook.set_current_page(tab.page_num);
+		uri_entry.text = uri;
 		uri_entry.grab_focus();
-		tab.webview.load_changed.connect((event) => {
+		tab.load_changed.connect((event) => {
 			update_buttons();
 			switch(event) {
 			case WebKit.LoadEvent.COMMITTED:
@@ -78,6 +75,8 @@ public class Ivory.MainWindow : ApplicationWindow {
 				break;
 			}
 		});
+		tab.load_uri(uri);
+		return tab;
 	}
 
 	private void update_buttons(Tab? _tab = null) {
@@ -90,8 +89,8 @@ public class Ivory.MainWindow : ApplicationWindow {
 			return;
 		}
 
-		back_button.sensitive = tab.webview.can_go_back();
-		forward_button.sensitive = tab.webview.can_go_forward();
+		back_button.sensitive = tab.can_go_back;
+		forward_button.sensitive = tab.can_go_forward;
 	}
 
 	private void update_entry(Tab? _tab = null) {
@@ -104,16 +103,18 @@ public class Ivory.MainWindow : ApplicationWindow {
 			return;
 		}
 
-		uri_entry.text = tab.webview.uri;
+		uri_entry.text = tab.uri;
 	}
 
 	[GtkCallback]
 	public void on_uri_entry_activate(Entry entry) {
-		if(active_tab == null) {
-			add_tab();
+		Tab tab;
+		if(active_tab != null) {
+			tab = active_tab;
+		} else {
+			tab = add_tab(entry.text);
 		}
-		active_tab.webview.load_uri(entry.text);
-		active_tab.webview.grab_focus();
+		tab.grab_focus();
 	}
 
 	[GtkCallback]

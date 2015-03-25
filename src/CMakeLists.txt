@@ -4,10 +4,12 @@ vala_add_library(ivory_static STATIC
 		ivoryapplication.vala
 		ivorymainwindow.vala
 		ivorytab.vala
+		ivorytablabel.vala
 	PACKAGES ${ivory_vala_packages}
 	OPTIONS
 		--gresources=${IVORY_RESDIR}/resources.xml
 		--vapi-comments
+		-g
 	GENERATE_VAPI
 	LIBRARY_NAME ivory
 	VAPI_PATH_VARIABLE ivory_vapi
