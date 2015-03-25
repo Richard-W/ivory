@@ -6,10 +6,9 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkImage" id="favicon">
-        <property name="visible">True</property>
+      <object class="GtkSpinner" id="spinner">
         <property name="can_focus">False</property>
-        <property name="icon_name">gtk-missing-image</property>
+        <property name="active">True</property>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -18,15 +17,27 @@
       </packing>
     </child>
     <child>
-      <object class="GtkLabel" id="label">
+      <object class="GtkImage" id="favicon">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">about:blank</property>
+        <property name="icon_name">gtk-missing-image</property>
       </object>
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">[blank]</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
       </packing>
     </child>
     <child>
@@ -39,14 +50,14 @@
           <object class="GtkImage" id="close_button_icon">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="icon_name">window-close</property>
+            <property name="icon_name">window-close-symbolic</property>
           </object>
         </child>
       </object>
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">2</property>
+        <property name="position">3</property>
       </packing>
     </child>
   </template>

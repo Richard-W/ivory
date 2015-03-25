@@ -12,6 +12,7 @@
       <object class="GtkNotebook" id="notebook">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
+        <signal name="switch-page" handler="on_notebook_switch_page" swapped="no"/>
         <child>
           <placeholder/>
         </child>
