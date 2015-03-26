@@ -104,7 +104,9 @@ public class Ivory.MainWindow : ApplicationWindow {
 			return;
 		}
 
-		uri_entry.text = tab.uri;
+		if(tab.uri != null) {
+			uri_entry.text = tab.uri;
+		}
 	}
 
 	[GtkCallback]
@@ -112,6 +114,7 @@ public class Ivory.MainWindow : ApplicationWindow {
 		Tab tab;
 		if(active_tab != null) {
 			tab = active_tab;
+			tab.load_uri(entry.text);
 		} else {
 			tab = add_tab(entry.text);
 		}
@@ -122,5 +125,6 @@ public class Ivory.MainWindow : ApplicationWindow {
 	public void on_notebook_switch_page(Widget _tab, uint page_num) {
 		var tab = (Tab) _tab;
 		update_buttons(tab);
+		update_entry(tab);
 	}
 }
