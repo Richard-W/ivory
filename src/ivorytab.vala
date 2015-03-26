@@ -15,7 +15,7 @@ public class Ivory.Tab : Box {
 	/**
 	 * Position in the notebook given during construction.
 	 */
-	public int page_num { get { return notebook.page_num(web_view); } }
+	public int page_num { get { return notebook.page_num(this); } }
 
 	/**
 	 * Content of the displayed websites title tag.
@@ -57,15 +57,21 @@ public class Ivory.Tab : Box {
 		pack_start(web_view);
 		web_view.notify.connect(on_web_view_notify);
 		web_view.load_changed.connect((event) => { load_changed(event); });
+		web_view.create.connect(on_web_view_create);
 
 		label =  new TabLabel(this);
 		label.close_button.clicked.connect(() => {
+			message("Removing page %d from notebook".printf(page_num));
 			notebook.remove_page(page_num);
 		});
 
 		notebook.append_page(this, label);
+	}
+
+	public override void show() {
+		base.show();
+		web_view.show();
 		label.show();
-		this.show_all();
 	}
 
 	private void on_web_view_notify(ParamSpec pspec) {
@@ -80,6 +86,14 @@ public class Ivory.Tab : Box {
 			notify_property("favicon");
 			break;
 		}
+	}
+
+	private Widget on_web_view_create(WebKit.NavigationAction nav_action) {
+		var tab = new Tab(this.notebook);
+		tab.web_view.ready_to_show.connect(() => {
+			tab.show();
+		});
+		return tab.web_view;
 	}
 
 	public void load_uri(string uri) {

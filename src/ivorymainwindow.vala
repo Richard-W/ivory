@@ -76,6 +76,7 @@ public class Ivory.MainWindow : ApplicationWindow {
 			}
 		});
 		tab.load_uri(uri);
+		tab.show();
 		return tab;
 	}
 
