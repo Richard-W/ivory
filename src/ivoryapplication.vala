@@ -24,9 +24,16 @@ public class Ivory.Application : Gtk.Application {
 
 	protected override void startup() {
 		base.startup();
-		WebKit.WebContext.get_default().set_favicon_database_directory(
-			Environment.get_home_dir() + "/.ivory/favicons"
+		var confdir = Environment.get_home_dir() + "/.ivory";
+		var context = WebKit.WebContext.get_default();
+
+		// Set favicon database directory
+		context.set_favicon_database_directory(
+			confdir + "/favicons"
 		);
+
+		var cookie_manager = context.get_cookie_manager();
+		cookie_manager.set_persistent_storage(confdir + "/cookie_jar.sqlite", WebKit.CookiePersistentStorage.SQLITE);
 	}
 
 	protected override void activate() {
