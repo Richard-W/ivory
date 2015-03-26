@@ -52,7 +52,7 @@ public class Ivory.Tab : Box {
 	 */
 	public Tab(Notebook notebook) {
 		this.notebook = notebook;
-		this.web_view = new WebKit.WebView();
+		this.web_view = new WebKit.WebView.with_settings(WebSettings.instance);
 
 		pack_start(web_view);
 		web_view.notify.connect(on_web_view_notify);
@@ -61,7 +61,6 @@ public class Ivory.Tab : Box {
 
 		label =  new TabLabel(this);
 		label.close_button.clicked.connect(() => {
-			message("Removing page %d from notebook".printf(page_num));
 			notebook.remove_page(page_num);
 		});
 
