@@ -18,6 +18,11 @@ set(ivory_vala_packages
 	gtk+-3.0
 	webkit2gtk-4.0
 )
+set(ivory_vala_options
+	--gresources=${IVORY_RESDIR}/resources.xml
+	--vapi-comments
+	-g
+)
 
 add_subdirectory(resources)
 add_subdirectory(src)

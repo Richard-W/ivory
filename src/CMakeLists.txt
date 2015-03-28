@@ -7,10 +7,7 @@ vala_add_library(ivory_static STATIC
 		ivorytablabel.vala
 		ivorywebsettings.vala
 	PACKAGES ${ivory_vala_packages}
-	OPTIONS
-		--gresources=${IVORY_RESDIR}/resources.xml
-		--vapi-comments
-		-g
+	OPTIONS ${ivory_vala_options}
 	GENERATE_VAPI
 	LIBRARY_NAME ivory
 	VAPI_PATH_VARIABLE ivory_vapi
@@ -21,6 +18,7 @@ vala_add_library(ivory_static STATIC
 vala_add_executable(ivory
 		ivorymain.vala
 	PACKAGES ${ivory_vala_packages}
+	OPTIONS ${ivory_vala_options}
 	CUSTOM_VAPIS ${ivory_vapi}
 	C_SOURCES ${IVORY_BINRESDIR}/resources.c
 )
