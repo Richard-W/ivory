@@ -15,5 +15,3 @@ function(ivory_test test)
 
 	add_test(NAME ${test} COMMAND ${test})
 endfunction()
-
-ivory_test(historybuttons)
