@@ -24,6 +24,13 @@ public class Ivory.Application : Gtk.Application {
 
 	private AsyncQueue<Test>? testing_queue = null;
 
+	/**
+	 * Enable testing mode.
+	 *
+	 * This enables the testing mode and makes it possible to push Test objects
+	 * into the main loop. In testing mode the main loop will check the testing_queue
+	 * for new Test objects and executes them.
+	 */
 	public void enable_testing() {
 		testing_queue = new AsyncQueue<Test>();
 		Timeout.add_full(Priority.DEFAULT, 50, () => {
@@ -36,6 +43,9 @@ public class Ivory.Application : Gtk.Application {
 		message("Testing enabled.");
 	}
 
+	/**
+	 * Adds a test to the main application loop.
+	 */
 	public void push_test(Test test) {
 		if(testing_queue != null) {
 			testing_queue.push(test);
@@ -64,6 +74,9 @@ public class Ivory.Application : Gtk.Application {
 	}
 }
 
+/**
+ * A test that can be pushed to the main application loop.
+ */
 public abstract class Ivory.Test {
 	public abstract void run();
 }
