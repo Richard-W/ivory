@@ -22,6 +22,28 @@ public class Ivory.Application : Gtk.Application {
 		Object(application_id: "xyz.wiedenhoeft.ivory", flags: ApplicationFlags.FLAGS_NONE);
 	}
 
+	private AsyncQueue<Test>? testing_queue = null;
+
+	public void enable_testing() {
+		testing_queue = new AsyncQueue<Test>();
+		Timeout.add_full(Priority.DEFAULT, 50, () => {
+			Test? test = testing_queue.try_pop();
+			if(test != null) {
+				test.run();
+			}
+			return true;
+		});
+		message("Testing enabled.");
+	}
+
+	public void push_test(Test test) {
+		if(testing_queue != null) {
+			testing_queue.push(test);
+		} else {
+			error("Test pushed but testing not enabled.");
+		}
+	}
+
 	protected override void startup() {
 		base.startup();
 		var confdir = Environment.get_home_dir() + "/.ivory";
@@ -40,4 +62,8 @@ public class Ivory.Application : Gtk.Application {
 		var main_window = new MainWindow(this);
 		main_window.show_all();
 	}
+}
+
+public abstract class Ivory.Test {
+	public abstract void run();
 }

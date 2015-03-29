@@ -21,8 +21,18 @@ set(ivory_vala_packages
 set(ivory_vala_options
 	--gresources=${IVORY_RESDIR}/resources.xml
 	--vapi-comments
+	--thread
 	-g
+)
+
+configure_file(
+	${CMAKE_CURRENT_SOURCE_DIR}/config.h.in
+	${CMAKE_CURRENT_BINARY_DIR}/config.h
+	@ONLY
 )
 
 add_subdirectory(resources)
 add_subdirectory(src)
+
+enable_testing()
+add_subdirectory(tests)
