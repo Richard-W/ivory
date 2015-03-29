@@ -64,7 +64,6 @@ public class Ivory.MainWindow : ApplicationWindow {
 
 	private Tab add_tab(string uri = "") {
 		var tab = new Tab(notebook);
-		notebook.set_current_page(tab.page_num);
 		uri_entry.text = uri;
 		uri_entry.grab_focus();
 		tab.load_changed.connect((event) => {
@@ -77,6 +76,7 @@ public class Ivory.MainWindow : ApplicationWindow {
 		});
 		tab.load_uri(uri);
 		tab.show();
+		notebook.set_current_page(tab.page_num);
 		return tab;
 	}
 
