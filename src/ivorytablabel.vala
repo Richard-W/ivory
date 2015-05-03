@@ -19,10 +19,18 @@ public class Ivory.TabLabel : Box {
 		tab.load_changed.connect(on_tab_load_changed);
 	}
 
+	private void set_label_text(string label_text) {
+		if(label_text.length > 20) {
+			label.set_label(label_text.substring(0, 20) + "…");
+		} else {
+			label.set_label(label_text);
+		}
+	}
+
 	public void on_tab_notify(ParamSpec pspec) {
 		switch(pspec.name) {
 		case "title":
-			label.set_label(tab.title);
+			set_label_text(tab.title);
 			break;
 		case "favicon":
 			update_favicon();
