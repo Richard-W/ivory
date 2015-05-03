@@ -16,6 +16,9 @@ public class Ivory.MainWindow : ApplicationWindow {
 	public Button refresh_button;
 	[GtkChild]
 	public Notebook notebook;
+
+	private URIParser uri_parser = new URIParser();
+
 	/**
 	 * Tab object that is currently displayed.
 	 */
@@ -112,11 +115,12 @@ public class Ivory.MainWindow : ApplicationWindow {
 	[GtkCallback]
 	public void on_uri_entry_activate(Entry entry) {
 		Tab tab;
+		string uri = uri_parser.parse(entry.text);
 		if(active_tab != null) {
 			tab = active_tab;
-			tab.load_uri(entry.text);
+			tab.load_uri(uri);
 		} else {
-			tab = add_tab(entry.text);
+			tab = add_tab(uri);
 		}
 		tab.grab_focus();
 	}

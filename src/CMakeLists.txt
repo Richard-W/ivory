@@ -6,6 +6,7 @@ vala_add_library(ivory_static STATIC
 		ivorytab.vala
 		ivorytablabel.vala
 		ivorywebsettings.vala
+		ivoryuriparser.vala
 	PACKAGES ${ivory_vala_packages}
 	OPTIONS ${ivory_vala_options}
 	GENERATE_VAPI
